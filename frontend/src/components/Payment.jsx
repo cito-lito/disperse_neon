@@ -48,10 +48,11 @@ const Payment = ({ address }) => {
         const name = await erc20.name();
         const symbol = await erc20.symbol();
         const balance = await erc20.balanceOf(address);
+        const balance6 = (ethers.utils.formatEther(balance) * 1000000000000); // quick fix for 6 decimals tokens i.e stables
         setTokenDetails({
           name,
           symbol,
-          balance: ethers.utils.formatEther(balance),
+          balance: balance,
         });
       }
 
@@ -169,6 +170,8 @@ const Payment = ({ address }) => {
   useEffect(() => {
     if (tokenDetails.balance && total) {
       const tokenBalance = ethers.utils.parseEther(tokenDetails.balance);
+      //const tokenBalance = tokenDetails.balance;
+      console.log("asd",tokenBalance )
       const remaining = tokenBalance.sub(total);
       setRemaining(ethers.utils.formatEther(remaining));
     } else {
@@ -238,7 +241,7 @@ const Payment = ({ address }) => {
             <>
               <p className="pt-4 text-l font-light">
                 {/* just for tokens with 6 decimals ,i.e, stables */}
-                you have {(tokenDetails.balance * 1000000000000)}{" "}
+                you have {(tokenDetails.balance )}{" "}
                 <span className="pt-1 text-xs">{tokenDetails.symbol}</span> (
                 {tokenDetails.name})
               </p>
