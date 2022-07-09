@@ -97,8 +97,9 @@ const Ether = ({ address }) => {
   }, [total]);
 
   return (
-    <p className="pt-4 text-l font-light italic">
-      you have {ethBalance} <span className="pt-1 text-sm">ETH</span>
+    <h5 className="text-2xl font-light italic">
+      <br></br>
+      you have {ethBalance} <span className="pt-1 text-sm">NEON</span>
       <Recipients
         textValue={textValue}
         setTextValue={setTextValue}
@@ -114,7 +115,7 @@ const Ether = ({ address }) => {
           txStatus={txStatus}
         />
       )}
-    </p>
+    </h5>
   );
 };
 

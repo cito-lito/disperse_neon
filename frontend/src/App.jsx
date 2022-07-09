@@ -39,8 +39,8 @@ function App() {
       const signer = await provider.getSigner();
       const address = await signer.getAddress();
 
-      if (chainId === chains.skale) {
-        dispatch({ type: "SET_NETWORK", payload: "skale" });
+      if (chainId === chains.neon_devnet) {
+        dispatch({ type: "SET_NETWORK", payload: "solana-devnet (r-proxy)" });
       } else {
         dispatch({ type: "SET_NETWORK", payload: name });
       }

@@ -181,13 +181,13 @@ const Payment = ({ address }) => {
       <h3 className="text-2xl font-light italic">
         send
         <span
-          onClick={() => setCurrentLink("ether")}
+          onClick={() => setCurrentLink("neon")}
           className={`border-gray-600 border-b-2 ${
-            currentLink !== "ether" ? "text-gray-500" : ""
+            currentLink !== "neon" ? "text-gray-500" : ""
           }`}
         >
           {" "}
-          ether{" "}
+          neon{" "}
         </span>
         or
         <span
@@ -201,7 +201,7 @@ const Payment = ({ address }) => {
         </span>
       </h3>
 
-      {currentLink === "ether" && <Ether address={address} />}
+      {currentLink === "neon" && <Ether address={address} />}
       {currentLink === "token" && (
         <div className="mt-12 mb-24">
           <h3 className="text-2xl font-light italic">token address</h3>
@@ -237,7 +237,8 @@ const Payment = ({ address }) => {
           {!isTokenLoading && tokenDetails.name && (
             <>
               <p className="pt-4 text-l font-light">
-                you have {tokenDetails.balance}{" "}
+                {/* just for tokens with 6 decimals ,i.e, stables */}
+                you have {(tokenDetails.balance * 1000000000000)}{" "}
                 <span className="pt-1 text-xs">{tokenDetails.symbol}</span> (
                 {tokenDetails.name})
               </p>
