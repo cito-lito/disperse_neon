@@ -48,11 +48,12 @@ const Payment = ({ address }) => {
         const name = await erc20.name();
         const symbol = await erc20.symbol();
         const balance = await erc20.balanceOf(address);
-        const balance6 = (ethers.utils.formatEther(balance) * 1000000000000); // quick fix for 6 decimals tokens i.e stables
-        setTokenDetails({
+        const decimals = await erc20.decimals()
+        const balanceWithDecimals = (balance / (10**decimals));
+          setTokenDetails({
           name,
           symbol,
-          balance: balance,
+          balance: balanceWithDecimals.toString(),
         });
       }
 
