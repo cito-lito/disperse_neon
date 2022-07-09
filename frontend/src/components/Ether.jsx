@@ -52,6 +52,7 @@ const Ether = ({ address }) => {
       setTxStatus(null);
       const { ethereum } = window;
       if (ethereum && disperseAddresses[chainId]) {
+      console.log("Hi ");
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
         const disperseContract = new ethers.Contract(
@@ -65,7 +66,7 @@ const Ether = ({ address }) => {
 
         console.log("Dispersing ETH now");
         console.log(total);
-        const txn = await disperseContract.disperseEther(recipients, values, {
+        const txn = await disperseContract.disperseNEON(recipients, values, {
           value: total,
         });
         setTxStatus({

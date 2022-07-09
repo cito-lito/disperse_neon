@@ -35,6 +35,7 @@ function App() {
       const { ethereum } = window;
       const provider = new ethers.providers.Web3Provider(ethereum);
       const { chainId, name } = await provider.getNetwork();
+      console.log({ chainId, name })
       const signer = await provider.getSigner();
       const address = await signer.getAddress();
 

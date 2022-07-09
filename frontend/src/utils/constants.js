@@ -30,6 +30,9 @@ export const disperseAddresses = {
   132333505628089:
     import.meta.VITE_DISPERSE_SKALE_V2 ||
     "0x73c0F3cf9Bae32c6A88aD4bc701b1C9aDC1E57d5",
+  245022926:
+  import.meta.VITE_DISPERSE_NEON_DEV ||
+      "0x358c61d37b4fe83642c445b851d861053507ff73"
 };
 
 export const scans = {
