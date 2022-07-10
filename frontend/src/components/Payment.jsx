@@ -27,6 +27,7 @@ const Payment = ({ address }) => {
   const [warn, setWarn] = useState(null);
   const [txStatus, setTxStatus] = useState(null);
   const [approveStatus, setApproveStatus] = useState(null);
+  const [tokenDecimals, setTokenDecimals] = useState(null);
 
   const getEthBalance = async (ethereum) => {
     if (!ethBalance) {
@@ -49,6 +50,7 @@ const Payment = ({ address }) => {
         const symbol = await erc20.symbol();
         const balance = await erc20.balanceOf(address);
         const decimals = await erc20.decimals()
+        setTokenDecimals(decimals)
         const balanceWithDecimals = (balance / (10**decimals));
           setTokenDetails({
           name,
@@ -126,7 +128,7 @@ const Payment = ({ address }) => {
         );
 
         const recipients = recipientsData.map((recipient) => recipient.address);
-        const values = recipientsData.map((recipient) => recipient.value);
+        const values = recipientsData.map((recipient) =>  ethers.utils.formatEther(recipient.value)*(10**tokenDecimals));
 
         const txn = await disperse.disperseToken(
           tokenAddress,
